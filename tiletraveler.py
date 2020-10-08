@@ -3,7 +3,7 @@ NORTH = 'n'
 EAST = 'e'
 SOUTH = 's'
 WEST = 'w'
-levers = [(1,2), ]
+levers = [(1,2), (2,2), (2,3), (3,2)]
 def move(direction, col, row):
     ''' Returns updated col, row given the direction '''
     if direction == NORTH:
@@ -71,7 +71,8 @@ def play_one_move(col, row, valid_directions, total_coins):
         lever_pulled = lever_pull(col, row)
         victory = is_victory(col, row)
         total_coins += lever_pulled
-        print("You received 1 coin, your total is now {}.".format(total_coins))
+        if lever_pulled == 1:
+            print("You received 1 coin, your total is now {}.".format(total_coins))
     return victory, col, row, total_coins
 
 def lever_pull(x, y):
