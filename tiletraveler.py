@@ -71,13 +71,52 @@ def play_one_move(col, row, valid_directions):
         victory = is_victory(col, row)
     return victory, col, row
 
+def are_there_coins(x, y):
+    coins = 0
+    total_coins = y
+    if col == 1 and row == 2:
+        lever = input("Pull lever (y/n): ")
+        if lever == "y":
+            coins += 1
+            print("You recieved 1 coin, your total is now {}.".format(total_coins))
+        else:
+            coins = 0
+    elif col == 2 and row == 2:
+        lever = input("Pull lever (y/n): ")
+        if lever == "y":
+            coins += 1
+            print("You recieved 1 coin, your total is now {}.".format(total_coins))
+        else:
+            coins = 0
+    elif col == 1 and row == 3:
+        lever = input("Pull lever (y/n): ")
+        if lever == "y":
+            coins += 1
+            print("You recieved 1 coin, your total is now {}.".format(total_coins))
+        else:
+            coins = 0
+    elif col == 3 and row == 2:
+        lever = input("Pull lever (y/n): ")
+        if lever == "y":
+            coins += 1
+            print("You recieved 1 coin, your total is now {}.".format(total_coins))
+        else:
+            coins = 0
+    else:
+        return coins, total_coins
+    
+    return coins, total_coins
+
 # The main program starts here
 victory = False
 row = 1
 col = 1
+total_coins = 0
 
 while not victory:
     valid_directions = find_directions(col, row)
+    coins, total_coins = are_there_coins(valid_directions, total_coins)
+    total_coins += coins
     print_directions(valid_directions)
     victory, col, row = play_one_move(col, row, valid_directions)
-print("Victory!")
+print("Victory! Total coins {}.".format(total_coins))
