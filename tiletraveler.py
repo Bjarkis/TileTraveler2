@@ -116,10 +116,15 @@ victory = False
 row = 1
 col = 1
 total_coins = 0
+cpy_row = 0
+cpy_col = 0
+copy_place = cpy_row, cpy_col
 
 while not victory:
     valid_directions = find_directions(col, row)
-    coins, total_coins = are_there_coins(valid_directions, total_coins)
+    if copy_place != valid_directions:
+        coins, total_coins = are_there_coins(valid_directions, total_coins)
+    copy_place = valid_directions
     print_directions(valid_directions)
     victory, col, row = play_one_move(col, row, valid_directions)
 print("Victory! Total coins {}.".format(total_coins))
