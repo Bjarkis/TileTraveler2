@@ -1,8 +1,11 @@
+import random
 # Constants
 NORTH = 'n'
 EAST = 'e'
 SOUTH = 's'
 WEST = 'w'
+YES = 'y'
+NO = 'n'
 levers = [(1,2), (2,2), (2,3), (3,2)]
 def move(direction, col, row):
     ''' Returns updated col, row given the direction '''
@@ -61,8 +64,9 @@ def play_one_move(col, row, valid_directions, total_coins):
     ''' Plays one move of the game
         Return if victory has been obtained and updated col,row '''
     victory = False
-    direction = input("Direction: ")
+    direction = random.choice([NORTH, EAST, SOUTH, WEST])
     direction = direction.lower()
+    print("Destinations: {}".format(direction))
     
     if not direction in valid_directions:
         print("Not a valid direction!")
@@ -78,8 +82,9 @@ def play_one_move(col, row, valid_directions, total_coins):
 def lever_pull(x, y):
     a_tuple = (x, y)
     if a_tuple in levers:
-        choice = input("Pull a lever (y/n): ")
+        choice = random.choice([YES, NO])
         choice = choice.lower()
+        print("Pull a lever (y/n): {}".format(choice))
         if choice == "y":
             return 1
         else:
@@ -99,7 +104,10 @@ def main():
     row = 1
     col = 1
     total_coins = 0
-
+    seed_input = int(input("Input seed: "))
+    random.seed(seed_input)
+    random.choice([YES, NO])
+    random.choice([NORTH, EAST, SOUTH, WEST])
 
     while not victory:
         valid_directions = find_directions(col, row)
