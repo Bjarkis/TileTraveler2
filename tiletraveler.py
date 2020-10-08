@@ -87,18 +87,26 @@ def lever_pull(x, y):
     else:
         return 0
     
-
+def retry():
+    retry = input("Play again (y/n): ")
+    retry = retry.lower()
+    if retry == "y":
+        main()
+        
 # The main program starts here
+def main():
+    victory = False
+    row = 1
+    col = 1
+    total_coins = 0
 
-victory = False
-row = 1
-col = 1
-total_coins = 0
 
+    while not victory:
+        valid_directions = find_directions(col, row)
+        copy_place = row, col
+        print_directions(valid_directions)
+        victory, col, row, total_coins = play_one_move(col, row, valid_directions, total_coins)
+    print("Victory! Total coins {}.".format(total_coins))
+    retry()
 
-while not victory:
-    valid_directions = find_directions(col, row)
-    copy_place = row, col
-    print_directions(valid_directions)
-    victory, col, row, total_coins = play_one_move(col, row, valid_directions, total_coins)
-print("Victory! Total coins {}.".format(total_coins))
+main()
