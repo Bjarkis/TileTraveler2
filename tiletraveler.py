@@ -60,14 +60,15 @@ def find_directions(col, row):
         valid_directions = SOUTH+WEST
     return valid_directions
 
-def play_one_move(col, row, valid_directions, total_coins):
+def play_one_move(col, row, valid_directions, total_coins, counter):
     ''' Plays one move of the game
         Return if victory has been obtained and updated col,row '''
     victory = False
     direction = random.choice([NORTH, EAST, SOUTH, WEST])
     direction = direction.lower()
-    print("Destinations: {}".format(direction))
-    
+    print("Direction: {}".format(direction))
+    counter += 1
+
     if not direction in valid_directions:
         print("Not a valid direction!")
     else:
@@ -77,7 +78,7 @@ def play_one_move(col, row, valid_directions, total_coins):
         total_coins += lever_pulled
         if lever_pulled == 1:
             print("You received 1 coin, your total is now {}.".format(total_coins))
-    return victory, col, row, total_coins
+    return victory, col, row, total_coins, counter
 
 def lever_pull(x, y):
     a_tuple = (x, y)
@@ -106,15 +107,14 @@ def main():
     total_coins = 0
     seed_input = int(input("Input seed: "))
     random.seed(seed_input)
-    random.choice([YES, NO])
-    random.choice([NORTH, EAST, SOUTH, WEST])
+    counter = 0
 
     while not victory:
         valid_directions = find_directions(col, row)
         copy_place = row, col
         print_directions(valid_directions)
-        victory, col, row, total_coins = play_one_move(col, row, valid_directions, total_coins)
-    print("Victory! Total coins {}.".format(total_coins))
+        victory, col, row, total_coins, counter = play_one_move(col, row, valid_directions, total_coins, counter)
+    print("Victory! Total coins {}. Moves {}.".format(total_coins, counter))
     retry()
 
 main()
