@@ -3,7 +3,7 @@ NORTH = 'n'
 EAST = 'e'
 SOUTH = 's'
 WEST = 'w'
-
+levers = [(1,2), ]
 def move(direction, col, row):
     ''' Returns updated col, row given the direction '''
     if direction == NORTH:
@@ -57,7 +57,7 @@ def find_directions(col, row):
         valid_directions = SOUTH+WEST
     return valid_directions
 
-def play_one_move(col, row, valid_directions):
+def play_one_move(col, row, valid_directions, total_coins):
     ''' Plays one move of the game
         Return if victory has been obtained and updated col,row '''
     victory = False
@@ -68,69 +68,36 @@ def play_one_move(col, row, valid_directions):
         print("Not a valid direction!")
     else:
         col, row = move(direction, col, row)
+        lever_pulled = lever_pull(col, row)
         victory = is_victory(col, row)
-    return victory, col, row
+        total_coins += lever_pulled
+        print("You received 1 coin, your total is now {}.".format(total_coins))
+    return victory, col, row, total_coins
 
-def are_there_coins(x, y):
-    coins = 0
-    total_coins = y
-    if (col == 1 and row == 2) and (z[0] != 1):
-        lever = input("Pull a lever (y/n): ")
-        lever = lever.lower()
-        if lever == "y":
-            total_coins += 1
-            z[0] = 1
-            print("You received 1 coin, your total is now {}.".format(total_coins))
+def lever_pull(x, y):
+    a_tuple = (x, y)
+    if a_tuple in levers:
+        choice = input("Pull a lever (y/n): ")
+        choice = choice.lower()
+        if choice == "y":
+            return 1
         else:
-            coins = 0
-    elif (col == 2 and row == 2) and (z[1] != 1):
-        lever = input("Pull a lever (y/n): ")
-        lever = lever.lower()
-        if lever == "y":
-            total_coins += 1
-            z[1] = 1
-            print("You reeieved 1 coin, your total is now {}.".format(total_coins))
-        else:
-            coins = 0
-    elif (col == 2 and row == 3) and (z[2] != 1):
-        lever = input("Pull a lever (y/n): ")
-        lever = lever.lower()
-        if lever == "y":
-            total_coins += 1
-            z[2] = 1
-            print("You received 1 coin, your total is now {}.".format(total_coins))
-        else:
-            coins = 0
-    elif (col == 3 and row == 2) and (z[3] != 1):
-        lever = input("Pull a lever (y/n): ")
-        lever = lever.lower()
-        if lever == "y":
-            total_coins += 1
-            z[3] = 1
-            print("You received 1 coin, your total is now {}.".format(total_coins))
-        else:
-            coins = 0
+            return 0
     else:
-        return coins, total_coins
-    
-    return coins, total_coins
+        return 0
     
 
 # The main program starts here
+
 victory = False
 row = 1
 col = 1
 total_coins = 0
-cpy_row = 0
-cpy_col = 0
-copy_place = cpy_row, cpy_col
-z = [0, 0, 0, 0]
+
 
 while not victory:
     valid_directions = find_directions(col, row)
-    if copy_place != valid_directions:
-        coins, total_coins = are_there_coins(valid_directions, total_coins)
-    copy_place = valid_directions
+    copy_place = row, col
     print_directions(valid_directions)
-    victory, col, row = play_one_move(col, row, valid_directions)
+    victory, col, row, total_coins = play_one_move(col, row, valid_directions, total_coins)
 print("Victory! Total coins {}.".format(total_coins))
