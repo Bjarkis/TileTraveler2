@@ -92,7 +92,7 @@ def are_there_coins(x, y):
             print("You reeieved 1 coin, your total is now {}.".format(total_coins))
         else:
             coins = 0
-    elif (col == 1 and row == 3) and (z[2] != 1):
+    elif (col == 2 and row == 3) and (z[2] != 1):
         lever = input("Pull a lever (y/n): ")
         lever = lever.lower()
         if lever == "y":
