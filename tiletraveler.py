@@ -76,6 +76,7 @@ def are_there_coins(x, y):
     total_coins = y
     if col == 1 and row == 2:
         lever = input("Pull lever (y/n): ")
+        lever = lever.lower()
         if lever == "y":
             coins += 1
             print("You recieved 1 coin, your total is now {}.".format(total_coins))
@@ -83,6 +84,7 @@ def are_there_coins(x, y):
             coins = 0
     elif col == 2 and row == 2:
         lever = input("Pull lever (y/n): ")
+        lever = lever.lower()
         if lever == "y":
             coins += 1
             print("You recieved 1 coin, your total is now {}.".format(total_coins))
@@ -90,6 +92,7 @@ def are_there_coins(x, y):
             coins = 0
     elif col == 1 and row == 3:
         lever = input("Pull lever (y/n): ")
+        lever = lever.lower()
         if lever == "y":
             coins += 1
             print("You recieved 1 coin, your total is now {}.".format(total_coins))
@@ -97,6 +100,7 @@ def are_there_coins(x, y):
             coins = 0
     elif col == 3 and row == 2:
         lever = input("Pull lever (y/n): ")
+        lever = lever.lower()
         if lever == "y":
             coins += 1
             print("You recieved 1 coin, your total is now {}.".format(total_coins))
