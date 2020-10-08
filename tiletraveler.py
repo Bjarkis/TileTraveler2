@@ -74,42 +74,47 @@ def play_one_move(col, row, valid_directions):
 def are_there_coins(x, y):
     coins = 0
     total_coins = y
-    if col == 1 and row == 2:
-        lever = input("Pull lever (y/n): ")
+    if (col == 1 and row == 2) and (z[0] != 1):
+        lever = input("Pull a lever (y/n): ")
         lever = lever.lower()
         if lever == "y":
             total_coins += 1
-            print("You recieved 1 coin, your total is now {}.".format(total_coins))
+            z[0] = 1
+            print("You received 1 coin, your total is now {}.".format(total_coins))
         else:
             coins = 0
-    elif col == 2 and row == 2:
-        lever = input("Pull lever (y/n): ")
+    elif (col == 2 and row == 2) and (z[1] != 1):
+        lever = input("Pull a lever (y/n): ")
         lever = lever.lower()
         if lever == "y":
             total_coins += 1
-            print("You recieved 1 coin, your total is now {}.".format(total_coins))
+            z[1] = 1
+            print("You reeieved 1 coin, your total is now {}.".format(total_coins))
         else:
             coins = 0
-    elif col == 1 and row == 3:
-        lever = input("Pull lever (y/n): ")
+    elif (col == 1 and row == 3) and (z[2] != 1):
+        lever = input("Pull a lever (y/n): ")
         lever = lever.lower()
         if lever == "y":
             total_coins += 1
-            print("You recieved 1 coin, your total is now {}.".format(total_coins))
+            z[2] = 1
+            print("You received 1 coin, your total is now {}.".format(total_coins))
         else:
             coins = 0
-    elif col == 3 and row == 2:
-        lever = input("Pull lever (y/n): ")
+    elif (col == 3 and row == 2) and (z[3] != 1):
+        lever = input("Pull a lever (y/n): ")
         lever = lever.lower()
         if lever == "y":
             total_coins += 1
-            print("You recieved 1 coin, your total is now {}.".format(total_coins))
+            z[3] = 1
+            print("You received 1 coin, your total is now {}.".format(total_coins))
         else:
             coins = 0
     else:
         return coins, total_coins
     
     return coins, total_coins
+    
 
 # The main program starts here
 victory = False
@@ -119,6 +124,7 @@ total_coins = 0
 cpy_row = 0
 cpy_col = 0
 copy_place = cpy_row, cpy_col
+z = [0, 0, 0, 0]
 
 while not victory:
     valid_directions = find_directions(col, row)
