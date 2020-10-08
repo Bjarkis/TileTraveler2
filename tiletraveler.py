@@ -78,7 +78,7 @@ def are_there_coins(x, y):
         lever = input("Pull lever (y/n): ")
         lever = lever.lower()
         if lever == "y":
-            coins += 1
+            total_coins += 1
             print("You recieved 1 coin, your total is now {}.".format(total_coins))
         else:
             coins = 0
@@ -86,7 +86,7 @@ def are_there_coins(x, y):
         lever = input("Pull lever (y/n): ")
         lever = lever.lower()
         if lever == "y":
-            coins += 1
+            total_coins += 1
             print("You recieved 1 coin, your total is now {}.".format(total_coins))
         else:
             coins = 0
@@ -94,7 +94,7 @@ def are_there_coins(x, y):
         lever = input("Pull lever (y/n): ")
         lever = lever.lower()
         if lever == "y":
-            coins += 1
+            total_coins += 1
             print("You recieved 1 coin, your total is now {}.".format(total_coins))
         else:
             coins = 0
@@ -102,7 +102,7 @@ def are_there_coins(x, y):
         lever = input("Pull lever (y/n): ")
         lever = lever.lower()
         if lever == "y":
-            coins += 1
+            total_coins += 1
             print("You recieved 1 coin, your total is now {}.".format(total_coins))
         else:
             coins = 0
@@ -120,7 +120,6 @@ total_coins = 0
 while not victory:
     valid_directions = find_directions(col, row)
     coins, total_coins = are_there_coins(valid_directions, total_coins)
-    total_coins += coins
     print_directions(valid_directions)
     victory, col, row = play_one_move(col, row, valid_directions)
 print("Victory! Total coins {}.".format(total_coins))
